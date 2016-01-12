@@ -10,9 +10,9 @@ describe SigepWeb::ServiceAvailability do
       config.card                = '0057018901'
     end
 
-    @service_availability = SigepWeb::ServiceAvailability.new(service_number: '40096',
-                                                             source_zip: '70002900',
-                                                             target_zip: '81350120')
+    @service_availability = SigepWeb.service_availability(service_number: '40096',
+                                                          source_zip: '70002900',
+                                                          target_zip: '81350120')
   end
 
   subject { @service_availability }

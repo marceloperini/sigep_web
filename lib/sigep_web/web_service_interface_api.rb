@@ -8,10 +8,6 @@ module SigepWeb
       @client.call(method, soap_action: "", message: message)
     end
 
-    def client
-      @client
-    end
-
     private
       def url
         if ENV['GEM_ENV'] == 'test'
