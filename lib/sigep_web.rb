@@ -6,6 +6,7 @@ require 'sigep_web/authenticate'
 require 'sigep_web/service_availability'
 require 'sigep_web/search_client'
 require 'sigep_web/zip_query'
+require 'sigep_web/request_labels'
 require 'savon'
 require 'nokogiri'
 
@@ -28,5 +29,9 @@ module SigepWeb
 
   def self.zip_query(options = {})
     ZipQuery.new(options)
+  end
+
+  def self.request_labels(options = {})
+    RequestLabels.new(options)
   end
 end
