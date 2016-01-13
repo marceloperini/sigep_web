@@ -6,9 +6,31 @@ module SigepWeb
     end
 
     def request
-      process(:consulta_cep, {
-        cep: @zip
-      }).to_hash[:consulta_cep_response][:return]
+      begin
+        response = process(:consulta_cep, {
+          cep: @zip
+        }).to_hash[:consulta_cep_response][:return]
+
+        ApiResponse.new(response)
+      rescue Savon::SOAPFault => msg
+        msg
+      end
+    end
+  end
+
+  class ApiResponse
+    attr_reader :neighborhood, :zip, :city, :complement, :other_complement,
+      :address, :id, :uf
+
+    def initialize(options = {})
+      @neighborhood     = options[:bairro]
+      @zip              = options[:cep]
+      @city             = options[:cidade]
+      @complement       = options[:complemento]
+      @other_complement = options[:complemento2]
+      @address          = options[:end]
+      @id               = options[:id]
+      @uf               = options[:uf]
     end
   end
 end
