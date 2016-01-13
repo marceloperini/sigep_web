@@ -7,6 +7,7 @@ require 'sigep_web/service_availability'
 require 'sigep_web/search_client'
 require 'sigep_web/zip_query'
 require 'sigep_web/request_labels'
+require 'sigep_web/generate_labels_digit_verifier'
 require 'savon'
 require 'nokogiri'
 
@@ -33,5 +34,9 @@ module SigepWeb
 
   def self.request_labels(options = {})
     RequestLabels.new(options)
+  end
+
+  def self.generate_labels_digit_verifier(options = {})
+    GenerateLabelsDigitVerifier.new(options)
   end
 end

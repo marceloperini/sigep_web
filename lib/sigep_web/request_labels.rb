@@ -35,7 +35,7 @@ module SigepWeb
         number = label.gsub(/[^\d]/, '').to_i
 
         while number <= label_range[1].gsub(/[^\d]/, '').to_i do
-          label_array.push(label_base[0] + number.to_s + ' ' + label_base[1])
+          label_array.push(label_base[0] + '0' + number.to_s + ' ' + label_base[1])
 
           number += 1
         end
