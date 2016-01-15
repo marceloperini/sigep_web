@@ -1,7 +1,9 @@
 PATH
   remote: .
   specs:
-    sigep_web (0.1.0)
+    sigep_web (0.2.0)
+      nokogiri (~> 1.6)
+      savon (~> 2.10.0)
 
 GEM
   remote: https://rubygems.org/
@@ -57,10 +59,8 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.11)
-  nokogiri (~> 1.6)
   rake (~> 10.0)
   rspec (~> 3.0)
-  savon (~> 2.10.0)
   sigep_web!
 
 BUNDLED WITH
