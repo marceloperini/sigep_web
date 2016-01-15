@@ -24,29 +24,33 @@ module SigepWeb
       end
 
       def to_xml
-        builder = Nokogiri::XML::Builder.new do |xml|
+        builder = Nokogiri::XML::Builder.new(encoding: 'ISO-8859-1') do |xml|
           xml.correioslog do
-            xml.tipo_postagem 'Postagem'
+            xml.tipo_arquivo 'Postagem'
             xml.versao_arquivo '2.3'
             xml.plp do
-              xml.plp.cartao_postagem @card
+              xml.id_plp
+              xml.valor_global
+              xml.mcu_unidade_postagem
+              xml.nome_unidade_postagem
+              xml.cartao_postagem @card
             end
 
             xml.remetente do
               xml.numero_contrato @contract_number
               xml.numero_diretoria @directorship_number
               xml.codigo_administrativo @administrative_code
-              xml.nome_remetente @name
-              xml.logradouro_remetente @address
+              xml.nome_remetente { xml.cdata @name }
+              xml.logradouro_remetente { xml.cdata @address }
               xml.numero_remetente @number
-              xml.complemento_remetente @complement
-              xml.bairro_remetente @neighborhood
-              xml.cep_remetente @zip_code
-              xml.cidate_remetente @city
+              xml.complemento_remetente { xml.cdata @complement }
+              xml.bairro_remetente { xml.cdata @neighborhood }
+              xml.cep_remetente { xml.cdata @zip_code }
+              xml.cidade_remetente { xml.cdata @city }
               xml.uf_remetente @uf
-              xml.telefone_remetente @phone
-              xml.fax_remetente @fax
-              xml.email_remetente @email
+              xml.telefone_remetente { xml.cdata @phone }
+              xml.fax_remetente { xml.cdata @fax }
+              xml.email_remetente { xml.cdata @email }
             end
 
             xml.forma_pagamento @payment_form
@@ -55,7 +59,46 @@ module SigepWeb
           end
         end
 
-        builder.to_xml
+        builder.to_xml.gsub(/\n/, '').encode(Encoding::UTF_8)
+      end
+
+      def example_xml
+        builder = Nokogiri::XML::Builder.new(encoding: 'ISO-8859-1') do |xml|
+          xml.correioslog do
+            xml.tipo_arquivo 'Postagem'
+            xml.versao_arquivo '2.3'
+            xml.plp do
+              xml.id_plp
+              xml.valor_global
+              xml.mcu_unidade_postagem
+              xml.nome_unidade_postagem
+              xml.cartao_postagem @card
+            end
+
+            xml.remetente do
+              xml.numero_contrato @contract_number
+              xml.numero_diretoria @directorship_number
+              xml.codigo_administrativo @administrative_code
+              xml.nome_remetente { xml.cdata @name }
+              xml.logradouro_remetente { xml.cdata @address }
+              xml.numero_remetente @number
+              xml.complemento_remetente { xml.cdata @complement }
+              xml.bairro_remetente { xml.cdata @neighborhood }
+              xml.cep_remetente { xml.cdata @zip_code }
+              xml.cidade_remetente { xml.cdata @city }
+              xml.uf_remetente @uf
+              xml.telefone_remetente { xml.cdata @phone }
+              xml.fax_remetente { xml.cdata @fax }
+              xml.email_remetente { xml.cdata @email }
+            end
+
+            xml.forma_pagamento @payment_form
+
+            XML::PostalObject.new(xml, @postal_objects).build_xml
+          end
+        end
+
+        builder.to_xml.encode(Encoding::UTF_8)
       end
     end
   end

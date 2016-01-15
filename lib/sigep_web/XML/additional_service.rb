@@ -7,13 +7,17 @@ module SigepWeb
       end
 
       def build_xml
-        @builder.servico_adicional do
-          @additional_service.codes.each do |code|
-            @builder.codigo_servico_adicional code
-          end
+          @builder.servico_adicional do
+            if @additional_service
+              @additional_service.codes.each do |code|
+                @builder.codigo_servico_adicional code
+              end
 
-          @builder.valor_declarado @additional_service.declareted_value
-        end
+              @builder.codigo_servico_adicional "025"
+
+              @builder.valor_declarado @additional_service.declareted_value
+            end
+          end
       end
     end
   end
