@@ -8,15 +8,27 @@ module SigepWeb
     end
 
     def request
-      authenticate = SigepWeb.configuration.authenticate
-      process(:verifica_disponibilidade_servico, {
-        codAdministrativo: authenticate.administrative_code,
-        numeroServico: @service_number,
-        cepOrigem: @source_zip,
-        cepDestino: @target_zip,
-        usuario: authenticate.user,
-        senha: authenticate.password
-      }).to_hash[:verifica_disponibilidade_servico_response][:return]
+      begin
+        authenticate = SigepWeb.configuration.authenticate
+        response = process(:verifica_disponibilidade_servico, {
+          codAdministrativo: authenticate.administrative_code,
+          numeroServico: @service_number,
+          cepOrigem: @source_zip,
+          cepDestino: @target_zip,
+          usuario: authenticate.user,
+          senha: authenticate.password
+        }).to_hash[:verifica_disponibilidade_servico_response][:return]
+
+        {
+          success: true,
+          response: response
+        }
+      rescue Savon::SOAPFault => msg
+        {
+          success: false,
+          error: msg
+        }
+      end
     end
   end
 end

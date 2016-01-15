@@ -8,13 +8,21 @@ module SigepWeb
     def request
       authenticate = SigepWeb.configuration.authenticate
       begin
-        process(:get_status_cartao_postagem, {
+        response = process(:get_status_cartao_postagem, {
           numeroCartaoPostagem: @postage_number_card,
           usuario: authenticate.user,
           senha: authenticate.password
         }).to_hash[:get_status_cartao_postagem_response][:return]
+
+        {
+          success: true,
+          response: response
+        }
       rescue Savon::SOAPFault => msg
-        msg
+        {
+          success: false,
+          error: msg
+        }
       end
     end
   end

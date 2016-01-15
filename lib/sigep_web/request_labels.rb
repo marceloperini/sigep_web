@@ -20,9 +20,15 @@ module SigepWeb
           senha: authenticate.password
         }).to_hash[:solicita_etiquetas_response][:return]
 
-        build_label_array(response)
+        {
+          success: true,
+          response: build_label_array(response)
+        }
       rescue Savon::SOAPFault => msg
-        msg
+        {
+          success: false,
+          error: msg
+        }
       end
     end
 

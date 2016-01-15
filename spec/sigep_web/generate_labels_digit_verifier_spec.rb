@@ -10,13 +10,18 @@ describe SigepWeb::GenerateLabelsDigitVerifier do
       config.card                = '0057018901'
     end
 
-    @gldv = SigepWeb.generate_labels_digit_verifier(labels: ['DL74668653 BR',
+    gldv = SigepWeb.generate_labels_digit_verifier(labels: ['DL74668653 BR',
                                                              'DL76023727 BR'])
+    @gldv_return = gldv.request
   end
 
-  subject { @gldv }
+  subject { @gldv_return }
+
+  it 'should return success true' do
+    expect(@gldv_return[:success]).to eq true
+  end
 
   it 'should responde with correct array' do
-    expect(@gldv.request).to eq ['6', '2']
+    expect(@gldv_return[:response]).to eq ['6', '2']
   end
 end

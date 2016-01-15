@@ -11,9 +11,15 @@ module SigepWeb
           cep: @zip
         }).to_hash[:consulta_cep_response][:return]
 
-        ApiResponse.new(response)
+        {
+          success: true,
+          response: ApiResponse.new(response)
+        }
       rescue Savon::SOAPFault => msg
-        msg
+        {
+          success: false,
+          error: msg
+        }
       end
     end
   end

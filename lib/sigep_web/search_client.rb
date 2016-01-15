@@ -14,11 +14,17 @@ module SigepWeb
           idCartaoPostagem: @id_post_card,
           usuario: authenticate.user,
           senha: authenticate.password
-        })
+        }).to_hash[:busca_cliente_response][:return]
 
-        response.to_hash[:busca_cliente_response][:return]
+        {
+          success: true,
+          response: response
+        }
       rescue Savon::SOAPFault => msg
-        msg
+        {
+          success: false,
+          error: msg
+        }
       end
     end
   end
