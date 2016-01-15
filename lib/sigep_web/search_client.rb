@@ -16,7 +16,7 @@ module SigepWeb
           senha: authenticate.password
         })
 
-        response.to_hash[:buscaClienteResponse][:return]
+        response.to_hash[:busca_cliente_response][:return]
       rescue Savon::SOAPFault => msg
         msg
       end
