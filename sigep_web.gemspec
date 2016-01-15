@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A gem to integrate Sigep Web API}
   spec.description   = %q{This gem provide a easy way to integrate an application to Correios Sigep Web API}
-  spec.homepage      = "http://rubygems.org/gems/sigep_web"
+  spec.homepage      = "https://github.com/Sidoniuns/sigep_web"
   spec.license       = "MIT"
 
   spec.rubyforge_project = 'sigep_web'
