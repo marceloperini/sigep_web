@@ -19,6 +19,7 @@ require 'sigep_web/request_labels'
 require 'sigep_web/generate_labels_digit_verifier'
 require 'sigep_web/request_plp_services'
 require 'sigep_web/postage_card_status'
+require 'sigep_web/request_xml_plp'
 require 'savon'
 require 'nokogiri'
 
@@ -57,5 +58,9 @@ module SigepWeb
 
   def self.postage_card_status(options = {})
     PostageCardStatus.new(options)
+  end
+
+  def self.request_xml_plp(options = {})
+    RequestXmlPlp.new(options)
   end
 end
