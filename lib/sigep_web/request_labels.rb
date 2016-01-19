@@ -35,14 +35,20 @@ module SigepWeb
     private
       def build_label_array(label_range)
         label_array = []
-        label_range = label_range.split(',')
-        label = label_range[0].to_s
-        label_base = label.gsub(/[\d]/, '').split(' ')
-        number = label.gsub(/[^\d]/, '').to_i
+        start_label, end_label = label_range.split(',')
+        prefix = start_label[0,2]
+        suffix = start_label[11,12]
+        number = start_label[2,8].to_i
+        end_number = end_label[2,8].to_i
 
-        while number <= label_range[1].gsub(/[^\d]/, '').to_i do
-          label_array.push(label_base[0] + '0' + number.to_s + ' ' + label_base[1])
+        while number <= end_number do
+          use_number = number.to_s
 
+          if use_number.size < 8
+            use_number = ('0' * (8 - use_number.size)) + use_number
+          end
+
+          label_array.push prefix + use_number + ' ' + suffix
           number += 1
         end
 

@@ -1,7 +1,10 @@
 module SigepWeb
   class WebServiceInterfaceApi
     def initialize
-      @client = Savon.client({ wsdl: url, ssl_verify_mode: :none })
+      @client = Savon.client({
+        wsdl: url,
+        ssl_verify_mode: :none
+      })
     end
 
     def process(method, message)
