@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sigep_web (0.2.2)
+    sigep_web (0.2.3)
       nokogiri (~> 1.6)
       savon (~> 2.10.0)
 
