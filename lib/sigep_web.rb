@@ -33,34 +33,34 @@ module SigepWeb
   end
 
   def self.service_availability(options = {})
-    ServiceAvailability.new(options)
+    ServiceAvailability.new(options).request
   end
 
   def self.search_client(options = {})
-    SearchClient.new(options)
+    SearchClient.new(options).request
   end
 
   def self.zip_query(options = {})
-    ZipQuery.new(options)
+    ZipQuery.new(options).request
   end
 
   def self.request_labels(options = {})
-    RequestLabels.new(options)
+    RequestLabels.new(options).request
   end
 
   def self.generate_labels_digit_verifier(options = {})
-    GenerateLabelsDigitVerifier.new(options)
+    GenerateLabelsDigitVerifier.new(options).request
   end
 
   def self.request_plp_services(options = {})
-    RequestPlpServices.new(options)
+    RequestPlpServices.new(options).request
   end
 
   def self.postage_card_status(options = {})
-    PostageCardStatus.new(options)
+    PostageCardStatus.new(options).request
   end
 
   def self.request_xml_plp(options = {})
-    RequestXmlPlp.new(options)
+    RequestXmlPlp.new(options).request
   end
 end
