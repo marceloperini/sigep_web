@@ -2,45 +2,44 @@ require 'spec_helper'
 
 describe SigepWeb::ZipQuery do
   before do
-    zip_query = SigepWeb.zip_query(zip: '70002900')
-    @zq_return = zip_query.request
+    @zip = SigepWeb.zip_query(zip: '70002900')
   end
 
-  subject { @zq_return }
+  subject { @zip }
 
   it 'should response success true' do
-    expect(@zq_return[:success]).to eq true
+    expect(@zip[:success]).to eq true
   end
 
   it 'should ApiResponse have correct neighborhood' do
-    expect(@zq_return[:response].neighborhood).to eq 'Asa Norte'
+    expect(@zip[:response].neighborhood).to eq 'Asa Norte'
   end
 
   it 'should ApiResponse have correct zip' do
-    expect(@zq_return[:response].zip).to eq '70002900'
+    expect(@zip[:response].zip).to eq '70002900'
   end
 
   it 'should ApiResponse have correct city' do
-    expect(@zq_return[:response].city).to eq 'Brasília'
+    expect(@zip[:response].city).to eq 'Brasília'
   end
 
   it 'should ApiResponse have correct complement' do
-    expect(@zq_return[:response].complement).to eq nil
+    expect(@zip[:response].complement).to eq nil
   end
 
   it 'should ApiResponse have correct other_complement' do
-    expect(@zq_return[:response].other_complement).to eq nil
+    expect(@zip[:response].other_complement).to eq nil
   end
 
   it 'should ApiResponse have correct address' do
-    expect(@zq_return[:response].address).to eq 'SBN Quadra 1 Bloco A'
+    expect(@zip[:response].address).to eq 'SBN Quadra 1 Bloco A'
   end
 
   it 'should ApiResponse have correct id' do
-    expect(@zq_return[:response].id).to eq '0'
+    expect(@zip[:response].id).to eq '0'
   end
 
   it 'should ApiResponse have correct uf' do
-    expect(@zq_return[:response].uf).to eq 'DF'
+    expect(@zip[:response].uf).to eq 'DF'
   end
 end

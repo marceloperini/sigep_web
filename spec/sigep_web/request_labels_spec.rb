@@ -10,11 +10,10 @@ describe SigepWeb::RequestLabels do
       config.card                = '0057018901'
     end
 
-    @request_labels = SigepWeb.request_labels(receiver_type: 'C',
-                                              identifier: '00000000000000',
-                                              id_service: '104625',
-                                              qt_labels: '1',
-                                              )
+    @labels = SigepWeb.request_labels(receiver_type: 'C',
+                                      identifier: '00000000000000',
+                                      id_service: '104625',
+                                      qt_labels: '1')
   end
 
   subject { @request_labels }

@@ -40,11 +40,10 @@ describe SigepWeb::RequestPlpServices do
                                           city: 'Brasília', uf: 'PR',
                                           phone: '6112345008', email: 'cli@mail.com.br',
                                           postal_objects: [postal_object])
-    request_plp_services = SigepWeb.request_plp_services(plp: sender, id_plp_client: 123,
-                                                         labels: ['PH18556091BR'])
+    @plp = SigepWeb.request_plp_services(plp: sender, id_plp_client: 123,
+                                         labels: ['PH18556091BR'])
 
-    @response = request_plp_services.request
   end
 
-  subject { @response }
+  subject { @plp }
 end
