@@ -16,7 +16,10 @@ module SigepWeb
           senha: authenticate.password
         }).to_hash[:solicita_xml_plp_response][:return]
 
-        response
+        {
+          success: true,
+          response: response
+        }
       rescue Savon::SOAPFault => msg
         {
           success: false,
