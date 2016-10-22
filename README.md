@@ -26,7 +26,7 @@ gem install sigep_web
 
 If you are using Rails put this in your environments configuration files:
 
-```
+``` ruby
 SigepWeb.configure do |config|
   config.user = 'YOUR_USER'
   config.password = 'YOUR_PASSWORD'
@@ -88,6 +88,24 @@ This method return the address based on zip code
 
 ``` ruby
 SigepWeb.zip_query(zip: "70002900")
+```
+
+This method will return a hash like this
+
+``` ruby
+{
+  :success => true,
+  :response => {
+    :bairro => 'Asa Norte',
+    :cep => '70002900',
+    :cidade => 'Brasília',
+    :complemento => nil,
+    :complemento2 => nil,
+    :end => 'SBN Quadra 1 Bloco A',
+    :id => '0',
+    :uf => 'DF'
+  }
+}
 ```
 
 #### Request Labels For Posts
