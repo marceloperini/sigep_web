@@ -3,7 +3,7 @@ PATH
   specs:
     sigep_web (0.2.6)
       nokogiri (~> 1.6)
-      savon (~> 2.10.0)
+      savon (~> 2.10, >= 2.10.0)
 
 GEM
   remote: https://rubygems.org/
@@ -21,11 +21,9 @@ GEM
     macaddr (1.7.1)
       systemu (~> 2.6.2)
     mini_portile2 (2.1.0)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     nori (2.6.0)
-    pkg-config (1.1.7)
     rack (1.6.4)
     rake (10.4.2)
     rspec (3.4.0)
@@ -68,4 +66,4 @@ DEPENDENCIES
   sigep_web!
 
 BUNDLED WITH
-   1.12.5
+   1.13.5
