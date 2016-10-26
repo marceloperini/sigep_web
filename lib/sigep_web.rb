@@ -20,6 +20,8 @@ require 'sigep_web/generate_labels_digit_verifier'
 require 'sigep_web/request_plp_services'
 require 'sigep_web/postage_card_status'
 require 'sigep_web/request_xml_plp'
+require 'sigep_web/request_range'
+require 'sigep_web/calculate_digit_checker'
 require 'savon'
 require 'nokogiri'
 
@@ -62,5 +64,13 @@ module SigepWeb
 
   def self.request_xml_plp(options = {})
     RequestXmlPlp.new(options).request
+  end
+
+  def self.request_range(options = {})
+    RequestRange.new(options).request
+  end
+
+  def self.calculate_digit_checker(options = {})
+    CalculateDigitChecker.new(options).request
   end
 end

@@ -13,7 +13,7 @@ module SigepWeb
 
         {
           success: true,
-          response: ApiResponse.new(response)
+          response: response
         }
       rescue Savon::SOAPFault => msg
         {
@@ -21,22 +21,6 @@ module SigepWeb
           error: msg
         }
       end
-    end
-  end
-
-  class ApiResponse
-    attr_reader :neighborhood, :zip, :city, :complement, :other_complement,
-      :address, :id, :uf
-
-    def initialize(options = {})
-      @neighborhood     = options[:bairro]
-      @zip              = options[:cep]
-      @city             = options[:cidade]
-      @complement       = options[:complemento]
-      @other_complement = options[:complemento2]
-      @address          = options[:end]
-      @id               = options[:id]
-      @uf               = options[:uf]
     end
   end
 end
