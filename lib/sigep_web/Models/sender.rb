@@ -36,7 +36,7 @@ module SigepWeb
           end
         end
 
-        builder.to_xml.delete(/\n/).encode(Encoding::UTF_8)
+        builder.to_xml.delete("\n").encode(Encoding::UTF_8)
       end
 
       private
