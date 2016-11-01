@@ -28,8 +28,8 @@ module SigepWeb
           xml.correioslog do
             xml.tipo_arquivo 'Postagem'
             xml.versao_arquivo '2.3'
-            plp_xml
-            receiver_xml
+            plp_xml(xml)
+            receiver_xml(xml)
             xml.forma_pagamento @payment_form
 
             XML::PostalObject.new(xml, @postal_objects).build_xml
@@ -41,7 +41,7 @@ module SigepWeb
 
       private
 
-      def plp_xml (xml)
+      def plp_xml(xml)
         xml.plp do
           xml.id_plp
           xml.valor_global
@@ -51,7 +51,7 @@ module SigepWeb
         end
       end
 
-      def receiver_xml (xml)
+      def receiver_xml(xml)
         xml.remetente do
           xml.numero_contrato @contract_number
           xml.numero_diretoria @directorship_number
