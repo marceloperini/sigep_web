@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/marceloperini/sigep_web.svg?branch=master)](https://travis-ci.org/marceloperini/sigep_web)
 [![Gem Version](https://badge.fury.io/rb/sigep_web.svg)](https://badge.fury.io/rb/sigep_web)
 [![Code Climate](https://codeclimate.com/github/Sidoniuns/sigep_web/badges/gpa.svg)](https://codeclimate.com/github/Sidoniuns/sigep_web)
+[![Coverage Status](https://coveralls.io/repos/github/marceloperini/sigep_web/badge.svg?branch=master)](https://coveralls.io/github/marceloperini/sigep_web?branch=master)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DWFWT6N2YCZTG)
 
 ## About
