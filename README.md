@@ -7,7 +7,7 @@
 
 ## About
 
-This gem provide a easy way to integrate an application to Correios Sigep Web API, all features is based on this API documentation [http://goo.gl/UglwTj](http://goo.gl/UglwTj)
+This gem provide a easy way to integrate an application to Correios Sigep Web API, all features is based on this [API documentation](http://www.corporativo.correios.com.br/encomendas/sigepweb/doc/Manual_de_Implementacao_do_Web_Service_SIGEP_WEB.pdf)
 
 ## Getting started
 
