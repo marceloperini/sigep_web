@@ -39,43 +39,47 @@ end
 ```
 ### How It Works
 
-####  Consulting service availability
+#### Consulting service availability
 
 This check whether a particular service is available from source zip code to target zip code.
 
 ``` ruby
-SigepWeb.service_availability(service_number: '40215', source_zip: '70002900', target_zip: '74730490')
+SigepWeb.service_availability(service_number: '40215',
+                              source_zip: '70002900',
+                              target_zip: '74730490')
 ```
 
 This method will return a hash like this if has a success response, the second attribute indicate if a particular service is available.
 
 ``` ruby
-{ :success => true, :response => true }
+{ success: true, response: true }
 ```
 
 #### Search Client
+
 This method return the available services of specific post card
 
 ``` ruby
-SigepWeb.search_client(id_contract: "0000000000", id_post_card: "0000000000")
+SigepWeb.search_client(id_contract: "0000000000",
+                       id_post_card: "0000000000")
 ```
 
 The method will return something like this
 
 ``` ruby
 {
-  :success => true,
-  :response => {
-    :cnpj => '0000000000',
-    :contratos => {
-      :cartoes_postage => {
-        :codigo_administrativo => '000000000',
-        :numero => '000000000',
-        :servicos => [
+  success: true,
+  response: {
+    cnpj: '0000000000',
+    contratos: {
+      cartoes_postage: {
+        codigo_administrativo: '000000000',
+        numero: '000000000',
+        servicos: [
           {
-            :codigo => '40096',
-            :descricao => 'SEDEX - CONTRATO',
-            :id => '104625'
+            codigo: '40096',
+            descricao: 'SEDEX - CONTRATO',
+            id: '104625'
           },
           ...
         ]
@@ -86,6 +90,7 @@ The method will return something like this
 ```
 
 #### Zip Query
+
 This method return the address based on zip code
 
 ``` ruby
@@ -96,22 +101,76 @@ This method will return a hash like this
 
 ``` ruby
 {
-  :success => true,
-  :response => {
-    :bairro => 'Asa Norte',
-    :cep => '70002900',
-    :cidade => 'Brasília',
-    :complemento => nil,
-    :complemento2 => nil,
-    :end => 'SBN Quadra 1 Bloco A',
-    :id => '0',
-    :uf => 'DF'
+  success: true,
+  response: {
+    bairro: 'Asa Norte',
+    cep: '70002900',
+    cidade: 'Brasília',
+    complemento: nil,
+    complemento2: nil,
+    end: 'SBN Quadra 1 Bloco A',
+    id: '0',
+    uf: 'DF'
   }
 }
 ```
 
 #### Request Labels For Posts
+
 Return one label or a range of labels to use for posts
+
 ``` ruby
-SigepWeb.request_labels(receiver_type: "C", identifier: "00000000000000", id_service: "104625", qt_labels: 1)
+SigepWeb.request_labels(receiver_type: 'C', identifier: '00000000000000',
+                        id_service: '104625', qt_labels: 1)
 ```
+
+return:
+
+```ruby
+{ success: true, response: ['DL61145929 BR'] }
+```
+
+#### Request verifying digit
+
+to generate the verifying digit for a specific label use:
+
+```ruby
+SigepWeb.generate_labels_digit_verifier(labels: 'DL61145929 BR')
+```
+
+return:
+
+```ruby
+{ success: true, response: 6 }
+```
+
+#### Create receiver structure
+
+use the _SigepWeb::Models::Receiver_ to create receiver structure:
+
+```ruby
+SigepWeb::Models::Receiver.new(name: 'Josefina', email: 'josefina@foo.com',
+                               number: '10', address: 'Rua X',
+                               complement: 'Perto da rua X+1',
+                               neighborhood: 'Bairro X-1',
+                               city: 'Cidade Y', uf: 'SP', amount: '0,0',
+                               cep: '04105-070')
+```
+#### Create post object dimensions
+
+use the _SigepWeb::Models::DimensionObject_ to create object dimensions:
+
+```ruby
+SigepWeb::Models::PostalObject.new(label_number: 'DL611459296BR',
+                                   postage_code_service: '40096',
+                                   cubage: 0.0, weight: '400',
+                                   receiver: receiver,
+                                   dimension_object: dimension_object,
+                                   processing_status: '0')
+```
+
+*   label_number: tracking code with verifying digit
+*   postage_code: service code to use (SEDEX, PAC, etc.), for this example was used SEDEX, to get all available codes use _SigepWeb.search_client_
+*   receiver: object instance of _SigepWeb::Models::Receiver_ class
+*   dimension_object: object instance of _SigepWeb::Models::DimensionObject_ class
+*   processing_status: default value is '0'
