@@ -161,6 +161,18 @@ SigepWeb::Models::Receiver.new(name: 'Josefina', email: 'josefina@foo.com',
 use the _SigepWeb::Models::DimensionObject_ to create object dimensions:
 
 ```ruby
+SigepWeb::Models::DimensionObject.new(object_type: '002', height: '20',
+                                      width: '30', length: '38',
+                                      diameter: '0')
+```
+
+*   object_type: use 001 to letter envelope, 002 to package/ box and 003 to roll/ cylinder
+
+#### Create post object
+
+use the _SigepWeb::Models::PostalObject_ to create post object:
+
+```ruby
 SigepWeb::Models::PostalObject.new(label_number: 'DL611459296BR',
                                    postage_code_service: '40096',
                                    cubage: 0.0, weight: '400',
@@ -174,3 +186,22 @@ SigepWeb::Models::PostalObject.new(label_number: 'DL611459296BR',
 *   receiver: object instance of _SigepWeb::Models::Receiver_ class
 *   dimension_object: object instance of _SigepWeb::Models::DimensionObject_ class
 *   processing_status: default value is '0'
+
+#### Create sender
+
+```ruby
+SigepWeb::Models::Sender.new(directorship_number: '16', name: 'Loja X',
+                             address: 'Rua X', number: '10',
+                             complement: 'perto da rua X+1',
+                             neighborhood: 'Bairro Y',
+                             zip_code: '7400000', city: 'Goiânia',
+                             uf: 'GO', email: 'contato@loja_x.com.br',
+                             postal_objects: postal_objects)
+```
+
+#### Submit the plp
+
+```ruby
+SigepWeb.request_plp_services(plp: sender, id_plp_client: 00_000_000,
+                              labels: labels)
+```
