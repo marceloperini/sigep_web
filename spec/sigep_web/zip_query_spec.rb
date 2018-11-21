@@ -36,7 +36,7 @@ describe SigepWeb::ZipQuery do
   end
 
   it 'should ApiResponse have correct id' do
-    expect(@zip[:response][:id]).to eq '0'
+    expect(@zip[:response][:id]).to eq nil
   end
 
   it 'should ApiResponse have correct uf' do

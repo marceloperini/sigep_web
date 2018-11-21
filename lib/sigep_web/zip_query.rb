@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   class ZipQuery < WebServiceInterfaceApi
     def initialize(options = {})

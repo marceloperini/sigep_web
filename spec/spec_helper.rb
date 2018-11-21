@@ -1,11 +1,11 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'sigep_web'
+# frozen_string_literal: true
+
 require 'simplecov'
-require 'coveralls'
-Coveralls.wear!
 
 SimpleCov.start do
-    add_filter "/spec/"
+  add_filter ['.bundle', 'spec']
 end
+
+require File.expand_path(File.dirname(__FILE__) + '/../lib/sigep_web')
 
 ENV['GEM_ENV'] = 'test'

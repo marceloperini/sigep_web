@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module SigepWeb
   class WebServiceInterfaceApi
-    def initialize
-      @client = Savon.client({
+    def initialize(default_client = Savon)
+      @client = default_client.client({
         wsdl: url,
         ssl_verify_mode: :none
       })
