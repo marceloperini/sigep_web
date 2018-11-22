@@ -9,6 +9,7 @@ before_install:
   - ./cc-test-reporter before-build
 script:
   - export GEM_ENV=test
+  - bundle install
   - bundle exec rspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
