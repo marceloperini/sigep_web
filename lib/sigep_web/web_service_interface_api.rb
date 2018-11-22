@@ -2,11 +2,8 @@
 
 module SigepWeb
   class WebServiceInterfaceApi
-    def initialize(default_client = Savon)
-      @client = default_client.client({
-        wsdl: url,
-        ssl_verify_mode: :none
-      })
+    def initialize(default_transfer = Savon)
+      @client = default_transfer.client(wsdl: url, ssl_verify_mode: :none)
     end
 
     def process(method, message)

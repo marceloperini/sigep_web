@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 module SigepWeb
   class ServiceAvailability < WebServiceInterfaceApi
     def initialize(options = {})
       @service_number = options[:service_number]
       @source_zip     = options[:source_zip]
       @target_zip     = options[:target_zip]
-      super(options[:client] || Savon)
+      super(options[:transfer] || Savon)
     end
 
     def request

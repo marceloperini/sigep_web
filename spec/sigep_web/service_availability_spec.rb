@@ -1,6 +1,9 @@
 require 'spec_helper'
 
+require 'pry'
+
 describe SigepWeb::ServiceAvailability do
+  let(:transfer) { double('transfer') }
   let(:client) { double('client') }
 
   before do
@@ -12,24 +15,27 @@ describe SigepWeb::ServiceAvailability do
       config.card                = '0057018901'
     end
 
-    @service = SigepWeb.service_availability(service_number: '04162',
-                                             source_zip: '05311900',
-                                             target_zip: '05311900')
+    allow(transfer).to receive(:client).and_return(client)
+    allow(client).to receive(:call).and_return({
+      verifica_disponibilidade_servico_response: {
+        return: '0#',
+        :"@xmlns:ns2" => 'http://cliente.bean.master.sigep.bsb.correios.com.br/'
+      }
+    })
   end
 
-  it do
-    client = double('client')
-
-    expect(client).to receive(:client).with()
+  subject(:service_availability) do
+    SigepWeb::ServiceAvailability.new(service_number: '04162',
+                                      source_zip: '05311900',
+                                      target_zip: '05311900',
+                                      transfer: transfer)
   end
-
-  subject { @service }
 
   it 'should response success true' do
-    expect(@service[:success]).to eq true
+    expect(service_availability.request[:success]).to eq true
   end
 
   it 'should respond with 0#' do
-    expect(@service[:response]).to eq '0#'
+    expect(service_availability.request[:response]).to eq '0#'
   end
 end
