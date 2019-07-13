@@ -22,12 +22,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'savon', '~> 2.10', '>= 2.10.0'
-  spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.1'
+  spec.add_dependency 'nokogiri', '>= 1.8.5'
 
   spec.add_development_dependency 'bundler', '~> 1.11'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'simplecov', '~> 0.14.1'
-  spec.add_development_dependency 'coveralls', '~> 0.8.21'
+  spec.add_development_dependency 'vcr', '~> 3.0', '>= 3.0.1'
+  spec.add_development_dependency 'guard-rspec', '~> 4.7'
+#  spec.add_development_dependency 'coveralls', '~> 0.8.21'
   spec.add_development_dependency 'rubocop', '~> 0.52.1'
 end

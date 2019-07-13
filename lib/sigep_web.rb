@@ -74,3 +74,4 @@ module SigepWeb
     CalculateDigitChecker.new(options).request
   end
 end
+
