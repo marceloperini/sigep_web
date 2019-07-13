@@ -1,14 +1,17 @@
+# frozen_string_literal: true
+
 module SigepWeb
   class Authenticate
-    attr_accessor :user, :password, :administrative_code,
-      :contract, :card
+    attr_reader :user, :password, :administrative_code,
+                :contract, :card
 
-    def initialize(options = {})
-      self.user = options[:user]
-      self.password = options[:password]
-      self.administrative_code = options[:administrative_code]
-      self.contract = options[:contract]
-      self.card = options[:card]
+    def initialize(user:, password:, administrative_code:, contract:, card:)
+      @user = user
+      @password = password
+      @administrative_code = administrative_code
+      @contract = contract
+      @card = card
     end
   end
 end
+

@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov', '~> 0.14.1'
   spec.add_development_dependency 'vcr', '~> 3.0', '>= 3.0.1'
   spec.add_development_dependency 'guard-rspec', '~> 4.7'
-#  spec.add_development_dependency 'coveralls', '~> 0.8.21'
   spec.add_development_dependency 'rubocop', '~> 0.52.1'
+  spec.add_development_dependency 'factory_bot'
+  spec.add_development_dependency 'pry'
 end

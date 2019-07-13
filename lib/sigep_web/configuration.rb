@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   class Configuration
     attr_accessor :user, :password, :administrative_code,
@@ -11,3 +13,4 @@ module SigepWeb
     end
   end
 end
+
