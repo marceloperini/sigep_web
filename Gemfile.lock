@@ -27,9 +27,9 @@ GEM
       rack
       socksify
     json (2.1.0)
-    mini_portile2 (2.3.0)
-    nokogiri (1.8.1)
-      mini_portile2 (~> 2.3.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.5)
+      mini_portile2 (~> 2.4.0)
     nori (2.6.0)
     parallel (1.12.1)
     parser (2.4.0.2)
