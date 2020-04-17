@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SigepWeb::ServiceAvailability do
+RSpec.describe SigepWeb::ServiceAvailability do
   subject(:service_availability) do
     described_class.new(
       service_number: '04162',
@@ -36,11 +36,9 @@ describe SigepWeb::ServiceAvailability do
         })
       end
 
-      it 'should response success true' do
-        expect(service_availability.request[:success]).to eq true
-      end
+      it { expect(service_availability.request[:success]).to be_truthy }
 
-      it 'should respond with 0#' do
+      it 'is expected to responds with 0#' do
         expect(service_availability.request[:response]).to eq '0#'
       end
     end
