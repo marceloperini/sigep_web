@@ -1,5 +1,7 @@
 name: Ruby
 
+on: [push]
+
 jobs:
   build:
 
