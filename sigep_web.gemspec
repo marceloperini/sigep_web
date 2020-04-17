@@ -25,11 +25,11 @@ Gem::Specification.new do |spec|
   # https://www.ruby-lang.org/en/news/2019/10/02/ruby-2-4-9-released/
   spec.required_ruby_version = ">= 2.4.0"
 
-  spec.add_dependency 'savon', '~> 2.10', '>= 2.10.0'
-  spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.1'
+  spec.add_dependency 'savon', '~> 2.10'
+  spec.add_dependency 'nokogiri', '>= 1.10.8'
 
   spec.add_development_dependency 'bundler', '~> 1.11'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '>= 2.0.8'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'simplecov', '~> 0.14.1'
   spec.add_development_dependency 'rubocop', '~> 0.52.1'
