@@ -14,12 +14,16 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/marceloperini/sigep_web'
   spec.license       = 'MIT'
 
-  spec.rubyforge_project = 'sigep_web'
-
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+
+  spec.required_rubygems_version = ">= 1.3.6"
+
+  # Ruby 2.4 reaches EoL at the end of March of 2020
+  # https://www.ruby-lang.org/en/news/2019/10/02/ruby-2-4-9-released/
+  spec.required_ruby_version = ">= 2.4.0"
 
   spec.add_dependency 'savon', '~> 2.10', '>= 2.10.0'
   spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.1'
