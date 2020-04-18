@@ -8,8 +8,8 @@ RSpec.describe SigepWeb::ServiceAvailability do
       config.user                = 'sigep'
       config.password            = 'n5f9t8'
       config.administrative_code = '17000190'
-      config.contract            = '9912208555'
-      config.card                = '0057018901'
+      config.contract            = '9992157880'
+      config.card                = '0067599079'
     end
   end
 

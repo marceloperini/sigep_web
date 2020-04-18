@@ -2,27 +2,24 @@
 
 module SigepWeb
   class ZipQuery < WebServiceInterfaceApi
-    def initialize(options = {})
-      @zip = options[:zip]
+    def initialize(zip:)
+      @zip = zip
+
       super()
     end
 
     def request
-      begin
-        response = process(:consulta_cep, {
-          cep: @zip
-        }).to_hash[:consulta_cep_response][:return]
+      response = process(
+        :consulta_cep, cep: zip
+      ).to_hash[:consulta_cep_response][:return]
 
-        {
-          success: true,
-          response: response
-        }
-      rescue Savon::SOAPFault => msg
-        {
-          success: false,
-          error: msg
-        }
-      end
+      { success: true, response: response }
+    rescue Savon::SOAPFault => msg
+      { success: false, error: msg }
     end
+
+    private
+
+    attr_reader :zip
   end
 end

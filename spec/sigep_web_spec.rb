@@ -59,7 +59,9 @@ RSpec.describe SigepWeb do
       allow(SigepWeb::SearchClient).to receive(:new).and_return(search_client)
       allow(search_client).to receive(:request)
 
-      sigep_web.search_client
+      sigep_web.search_client(
+        id_contract: '9992157880', id_post_card: '0067599079'
+      )
     end
 
     it 'is expeceted to access SigepWeb::SearchClient#request' do
@@ -74,7 +76,7 @@ RSpec.describe SigepWeb do
       allow(SigepWeb::ZipQuery).to receive(:new).and_return(zip_query)
       allow(zip_query).to receive(:request)
 
-      sigep_web.zip_query
+      sigep_web.zip_query(zip: '70002900')
     end
 
     it 'is expeceted to access SigepWeb::ZipQuery' do

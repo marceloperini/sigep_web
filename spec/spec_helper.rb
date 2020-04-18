@@ -5,6 +5,7 @@ ENV['GEM_ENV'] = 'test'
 require 'pry'
 require 'simplecov'
 require 'vcr'
+require 'rspec/json_expectations'
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
