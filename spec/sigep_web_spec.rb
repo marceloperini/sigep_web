@@ -144,4 +144,52 @@ RSpec.describe SigepWeb do
       expect(postage_card_status).to have_received(:request)
     end
   end
+
+  describe '.request_xml_plp' do
+    let(:request_xml_plp) { instance_double(SigepWeb::RequestXmlPlp) }
+
+    before do
+      allow(SigepWeb::RequestXmlPlp)
+        .to receive(:new).and_return(request_xml_plp)
+      allow(request_xml_plp).to receive(:request)
+
+      sigep_web.request_xml_plp
+    end
+
+    it 'is expeceted to access SigepWeb::RequestXmlPlp' do
+      expect(request_xml_plp).to have_received(:request)
+    end
+  end
+
+  describe '.request_range' do
+    let(:request_range) { instance_double(SigepWeb::RequestRange) }
+
+    before do
+      allow(SigepWeb::RequestRange)
+        .to receive(:new).and_return(request_range)
+      allow(request_range).to receive(:request)
+
+      sigep_web.request_range
+    end
+
+    it 'is expeceted to access SigepWeb::RequestRange' do
+      expect(request_range).to have_received(:request)
+    end
+  end
+
+  describe '.calculate_digit_checker' do
+    let(:calculate_digit_checker) { instance_double(SigepWeb::CalculateDigitChecker) }
+
+    before do
+      allow(SigepWeb::CalculateDigitChecker)
+        .to receive(:new).and_return(calculate_digit_checker)
+      allow(calculate_digit_checker).to receive(:request)
+
+      sigep_web.calculate_digit_checker
+    end
+
+    it 'is expeceted to access SigepWeb::CalculateDigitCheker' do
+      expect(calculate_digit_checker).to have_received(:request)
+    end
+  end
 end
