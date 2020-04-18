@@ -1,17 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe SigepWeb::ServiceAvailability do
-  subject(:service_availability) do
-    described_class.new(
-      service_number: '04162',
-      source_zip: '05311900',
-      target_zip: '05311900',
-      transfer: transfer
-    )
-  end
-
-  let(:transfer) { double('transfer') }
-  let(:client) { double('client') }
+  subject(:service_availability) { described_class.new(options) }
 
   before do
     SigepWeb.configure do |config|
@@ -21,19 +11,16 @@ RSpec.describe SigepWeb::ServiceAvailability do
       config.contract            = '9912208555'
       config.card                = '0057018901'
     end
-
-    allow(transfer).to receive(:client).and_return(client)
   end
 
   describe '#request' do
-    context 'when request are successful' do
-      before do
-        allow(client).to receive(:call).and_return({
-          verifica_disponibilidade_servico_response: {
-            return: '0#',
-            :"@xmlns:ns2" => 'http://cliente.bean.master.sigep.bsb.correios.com.br/'
-          }
-        })
+    context 'when request are successful', vcr: { cassette_name: 'service_availability/success' } do
+      let(:options) do
+        {
+          service_number: '04162',
+          source_zip: '05311900',
+          target_zip: '05311900'
+        }
       end
 
       it { expect(service_availability.request[:success]).to be_truthy }
@@ -43,13 +30,14 @@ RSpec.describe SigepWeb::ServiceAvailability do
       end
     end
 
-    context 'when request fail' do
-      before do
-        allow(client).to receive(:call).and_raise(
-          Savon::SOAPFault.new('error', 'error')
-        )
+    context 'when request fail', vcr: { cassette_name: 'service_availability/fail' } do
+      let(:options) do
+        {
+          service_number: '',
+          source_zip: '05311900',
+          target_zip: '05311900'
+        }
       end
-
       it { expect(service_availability.request[:success]).to be_falsey }
     end
   end
