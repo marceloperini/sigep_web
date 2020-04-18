@@ -36,17 +36,34 @@ RSpec.describe SigepWeb do
   end
 
   describe '.service_availability' do
-    let(:service_availability) { instance_double(ServiceAvailability) }
+    let(:service_availability) { instance_double(SigepWeb::ServiceAvailability) }
 
     before do
-      allow(ServiceAvailability).to receive(:new).and_return(service_availability)
+      allow(SigepWeb::ServiceAvailability).to receive(:new).and_return(service_availability)
       allow(service_availability).to receive(:request)
 
-      sigep_web.service_availability
+      sigep_web.service_availability(
+        service_number: '0', source_zip: '0', target_zip: '0'
+      )
     end
 
-    it 'is expected to access ServiceAvailability#request' do
+    it 'is expected to access SigepWeb::ServiceAvailability#request' do
       expect(service_availability).to have_received(:request)
+    end
+  end
+
+  describe '.search_client' do
+    let(:search_client) { instance_double(SigepWeb::SearchClient) }
+
+    before do
+      allow(SigepWeb::SearchClient).to receive(:new).and_return(search_client)
+      allow(search_client).to receive(:request)
+
+      sigep_web.search_client
+    end
+
+    it 'is expeceted to access SigepWeb::SearchClient#request' do
+      expect(search_client).to have_received(:request)
     end
   end
 end

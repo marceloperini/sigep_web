@@ -2,7 +2,7 @@
 
 module SigepWeb
   class ServiceAvailability < WebServiceInterfaceApi
-    def initialize(service_number:, source_zip:, target_zip:, transfer:)
+    def initialize(service_number:, source_zip:, target_zip:, transfer: Savon)
       @service_number = service_number
       @source_zip     = source_zip
       @target_zip     = target_zip
