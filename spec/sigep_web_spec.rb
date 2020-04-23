@@ -107,7 +107,7 @@ RSpec.describe SigepWeb do
         .to receive(:new).and_return(generate_labels_digit_verifier)
       allow(generate_labels_digit_verifier).to receive(:request)
 
-      sigep_web.generate_labels_digit_verifier
+      sigep_web.generate_labels_digit_verifier(labels: ['DL76023727 BR'])
     end
 
     it 'is expeceted to access SigepWeb::GenerateLabelsDigitVerifier' do

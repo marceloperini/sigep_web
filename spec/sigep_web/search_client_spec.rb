@@ -14,7 +14,7 @@ RSpec.describe SigepWeb::SearchClient do
   end
 
   describe '#request' do
-    context 'when request are successful', vcr: { cassette_name: 'serach_client/success' } do
+    context 'when request are successful', vcr: { cassette_name: 'search_client/success' } do
       let(:options) { { id_contract: '9992157880', id_post_card: '0067599079' } }
 
       it { expect(search_client.request[:success]).to be_truthy }
