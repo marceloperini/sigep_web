@@ -91,7 +91,10 @@ RSpec.describe SigepWeb do
       allow(SigepWeb::RequestLabels).to receive(:new).and_return(request_labels)
       allow(request_labels).to receive(:request)
 
-      sigep_web.request_labels
+      sigep_web.request_labels(
+        receiver_type: 'C', identifier: '000000000000',
+        id_service: '104707', qt_labels: '1'
+      )
     end
 
     it 'is expeceted to access SigepWeb::RequestLabels' do
