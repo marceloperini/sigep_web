@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   class RequestLabels < WebServiceInterfaceApi
     def initialize(options = {})

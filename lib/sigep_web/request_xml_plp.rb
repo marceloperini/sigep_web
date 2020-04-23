@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   class RequestXmlPlp < WebServiceInterfaceApi
     def initialize(options = {})
@@ -29,3 +31,4 @@ module SigepWeb
     end
   end
 end
+

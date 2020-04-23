@@ -123,7 +123,9 @@ RSpec.describe SigepWeb do
         .to receive(:new).and_return(request_ptp_services)
       allow(request_ptp_services).to receive(:request)
 
-      sigep_web.request_plp_services
+      sigep_web.request_plp_services(
+        labels: ['SX08689124BR'], id_plp_client: 123, plp: {}
+      )
     end
 
     it 'is expeceted to access SigepWeb::RequestPlpServices' do
