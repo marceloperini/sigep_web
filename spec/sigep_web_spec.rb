@@ -192,7 +192,7 @@ RSpec.describe SigepWeb do
         .to receive(:new).and_return(calculate_digit_checker)
       allow(calculate_digit_checker).to receive(:request)
 
-      sigep_web.calculate_digit_checker
+      sigep_web.calculate_digit_checker(number: '666')
     end
 
     it 'is expeceted to access SigepWeb::CalculateDigitCheker' do
