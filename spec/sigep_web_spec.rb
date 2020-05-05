@@ -144,7 +144,7 @@ RSpec.describe SigepWeb do
         .to receive(:new).and_return(postage_card_status)
       allow(postage_card_status).to receive(:request)
 
-      sigep_web.postage_card_status
+      sigep_web.postage_card_status(postage_number_card: '000')
     end
 
     it 'is expeceted to access SigepWeb::PostageCardStatus' do
