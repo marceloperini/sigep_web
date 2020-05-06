@@ -176,7 +176,7 @@ RSpec.describe SigepWeb do
         .to receive(:new).and_return(request_range)
       allow(request_range).to receive(:request)
 
-      sigep_web.request_range
+      sigep_web.request_range(type: 'AP', service: '', quantity: 1)
     end
 
     it 'is expeceted to access SigepWeb::RequestRange' do

@@ -1,36 +1,40 @@
+# frozen_string_literal: true
+
 module SigepWeb
   class RequestRange < WebServiceReverseLogisticApi
-    def initialize(options = {})
-      @type = options[:type]
-      @service = options[:service]
-      @quantity = options[:quantity]
+    def initialize(type:, service:, quantity:)
+      @type = type
+      @service = service
+      @quantity = quantity
+
       super()
     end
 
     def request
       authenticate = SigepWeb.configuration.authenticate
 
-      begin
-        response = process(:solicitar_range, {
-          usuario: authenticate.user,
-          senha: authenticate.password,
-          codAdministrativo: authenticate.administrative_code,
-          contrato: authenticate.contract,
-          tipo: @type,
-          servico: @service,
-          quantidade: @quantity
-        }).to_hash[:solicitar_range_response][:return]
+      response = process(:solicitar_range, {
+        usuario: authenticate.user,
+        senha: authenticate.password,
+        codAdministrativo: authenticate.administrative_code,
+        contrato: authenticate.contract,
+        tipo: type,
+        servico: service,
+        quantidade: quantity
+      }).to_hash[:solicitar_range_response][:return]
 
-        {
-          success: true,
-          response: response
-        }
-      rescue Savon::SOAPFault => msg
-        {
-          success: false,
-          error: msg
-        }
+      if response[:cod_erro] == '0'
+        { success: true, response: response }
+      else
+        { success: false, error: response[:msg_erro] }
       end
+    rescue Savon::SOAPFault => msg
+      { success: false, error: msg }
     end
+
+    private
+
+    attr_reader :type, :service, :quantity
   end
 end
+
