@@ -2,8 +2,8 @@
 
 module SigepWeb
   class RequestXmlPlp < WebServiceInterfaceApi
-    def initialize(options = {})
-      @id_plp   = options[:id_plp]
+    def initialize(id_plp:)
+      @id_plp = id_plp
 
       super()
     end
@@ -11,24 +11,20 @@ module SigepWeb
     def request
       authenticate = SigepWeb.configuration.authenticate
 
-      begin
-        response = process(:solicita_xml_plp, {
-          idPlpMaster: @id_plp,
-          usuario: authenticate.user,
-          senha: authenticate.password
-        }).to_hash[:solicita_xml_plp_response][:return]
+      response = process(:solicita_xml_plp,
+        idPlpMaster: id_plp,
+        usuario: authenticate.user,
+        senha: authenticate.password
+      ).to_hash[:solicita_xml_plp_response][:return]
 
-        {
-          success: true,
-          response: response
-        }
-      rescue Savon::SOAPFault => msg
-        {
-          success: false,
-          error: msg
-        }
-      end
+      { success: true, response: response }
+    rescue Savon::SOAPFault => msg
+      { success: false, error: msg }
     end
+
+    private
+
+    attr_reader :id_plp
   end
 end
 

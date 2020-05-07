@@ -160,7 +160,7 @@ RSpec.describe SigepWeb do
         .to receive(:new).and_return(request_xml_plp)
       allow(request_xml_plp).to receive(:request)
 
-      sigep_web.request_xml_plp
+      sigep_web.request_xml_plp(id_plp: '000')
     end
 
     it 'is expeceted to access SigepWeb::RequestXmlPlp' do
