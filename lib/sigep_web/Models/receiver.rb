@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   module Models
     class Receiver
@@ -31,3 +33,4 @@ module SigepWeb
     end
   end
 end
+

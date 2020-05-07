@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   module Models
     class DimensionObject
@@ -13,3 +15,4 @@ module SigepWeb
     end
   end
 end
+

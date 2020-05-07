@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   module Models
     class AdditionalService

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SigepWeb
   module Models
     class PostalObject
@@ -19,3 +21,4 @@ module SigepWeb
     end
   end
 end
+
