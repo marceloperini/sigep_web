@@ -18,8 +18,8 @@ module SigepWeb
       ).to_hash[:solicita_xml_plp_response][:return]
 
       { success: true, response: response }
-    rescue Savon::SOAPFault => msg
-      { success: false, error: msg }
+    rescue Savon::SOAPFault => e
+      { success: false, error: e.message }
     end
 
     private
