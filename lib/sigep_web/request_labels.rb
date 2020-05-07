@@ -24,8 +24,8 @@ module SigepWeb
       ).to_hash[:solicita_etiquetas_response][:return]
 
       { success: true, response: build_label_array(response) }
-    rescue Savon::SOAPFault => exception
-      { success: false, error: exception.message }
+    rescue Savon::SOAPFault => e
+      { success: false, error: e.message }
     end
 
     private

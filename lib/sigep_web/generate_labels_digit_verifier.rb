@@ -18,8 +18,8 @@ module SigepWeb
       ).to_hash[:gera_digito_verificador_etiquetas_response][:return]
 
       { success: true, response: response }
-    rescue Savon::SOAPFault => exception
-      { success: false, error: exception.message }
+    rescue Savon::SOAPFault => e
+      { success: false, error: e.message }
     end
 
     private

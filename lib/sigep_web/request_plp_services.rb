@@ -23,8 +23,8 @@ module SigepWeb
       ).to_hash[:fecha_plp_varios_servicos_response][:return].to_s
 
       { success: true, response: response }
-    rescue Savon::SOAPFault => exception
-      { success: false, error: exception.message }
+    rescue Savon::SOAPFault => e
+      { success: false, error: e.message }
     end
 
     private

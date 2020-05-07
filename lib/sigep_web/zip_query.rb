@@ -14,8 +14,8 @@ module SigepWeb
       ).to_hash[:consulta_cep_response][:return]
 
       { success: true, response: response }
-    rescue Savon::SOAPFault => msg
-      { success: false, error: msg }
+    rescue Savon::SOAPFault => e
+      { success: false, error: e.message }
     end
 
     private
