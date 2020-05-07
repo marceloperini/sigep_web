@@ -3,11 +3,12 @@ name: rubocop
 on: [push]
 
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Rubocop checks
+    - name: Set up Rubocop
       uses: gimenete/rubocop-action@1.0
+    - name: Check rubocop
       run: bundle exec rubocop
