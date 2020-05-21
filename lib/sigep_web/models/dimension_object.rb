@@ -5,12 +5,12 @@ module SigepWeb
     class DimensionObject
       attr_accessor :object_type, :height, :width, :length, :diameter
 
-      def initialize(options = {})
-        @object_type = options[:object_type]
-        @height      = options[:height]
-        @width       = options[:width]
-        @length      = options[:length]
-        @diameter    = options[:diameter]
+      def initialize(object_type:, height:, width:, length:, diameter:)
+        @object_type = object_type
+        @height      = height
+        @width       = width
+        @length      = length
+        @diameter    = diameter
       end
     end
   end
