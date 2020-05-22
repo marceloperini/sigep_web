@@ -18,6 +18,7 @@ jobs:
     - name: Build and test
       env:
         GEM_ENV: test
+        COVERALLS_REPO_TOKEN: <%= ENV['COVERALLS_REPO_TOKEN'] %>
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
