@@ -2,7 +2,6 @@
 
 ![Build Status](https://github.com/marceloperini/sigep_web/workflows/Ruby/badge.svg)
 [![Gem Version](https://badge.fury.io/rb/sigep_web.svg)](https://badge.fury.io/rb/sigep_web)
-[![Code Climate](https://codeclimate.com/github/Sidoniuns/sigep_web/badges/gpa.svg)](https://codeclimate.com/github/Sidoniuns/sigep_web)
 [![Coverage Status](https://coveralls.io/repos/github/marceloperini/sigep_web/badge.svg?branch=master)](https://coveralls.io/github/marceloperini/sigep_web?branch=master)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DWFWT6N2YCZTG)
 
