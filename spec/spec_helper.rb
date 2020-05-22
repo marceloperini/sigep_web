@@ -4,8 +4,8 @@ ENV['GEM_ENV'] = 'test'
 
 require 'pry'
 require 'simplecov'
+require 'simplecov-lcov'
 require 'vcr'
-require 'coveralls'
 require 'rspec/json_expectations'
 
 VCR.configure do |config|
@@ -16,7 +16,13 @@ VCR.configure do |config|
   config.allow_http_connections_when_no_cassette = true
 end
 
-SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+SimpleCov::Formatter::LcovFormatter.config do |c|
+  c.report_with_single_file = true
+  c.single_report_path = 'coverage/lcov.info'
+end
+
+SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+
 SimpleCov.start do
   add_filter ['.bundle', 'spec']
 end
