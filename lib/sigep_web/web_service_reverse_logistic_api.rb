@@ -16,9 +16,9 @@ module SigepWeb
     private
       def url
         if ENV['GEM_ENV'] == 'test'
-          'http://webservicescolhomologacao.correios.com.br/ScolWeb/WebServiceScol?wsdl'
+          'https://apphom.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl'
         else
-          'http://webservicescol.correios.com.br/ScolWeb/WebServiceScol?wsdl'
+          'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl'
         end
       end
   end
