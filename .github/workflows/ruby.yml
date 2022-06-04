@@ -20,11 +20,10 @@ jobs:
 
   # The test job is a matrix of ruby/rails versions.
   gha-job-test:
-    name: Ruby ${{ matrix.ruby }}, ${{ matrix.gemfile }}.gemfile
+    name: Ruby ${{ matrix.ruby }}
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        gemfile: [ 'ruby_3.1' ]
         ruby: [ '2.6', '2.7', '3.0', '3.1' ]
     steps:
       - name: Checkout source
@@ -33,14 +32,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true # 'bundle install' and cache
-        env:
-          BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
+          bundler-cache: true
 
       - name: Test
         run: bundle exec rspec
-        env:
-          BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
 
       - name: Coverage
         uses: coverallsapp/github-action@master
