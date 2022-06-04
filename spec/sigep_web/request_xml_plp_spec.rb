@@ -17,7 +17,7 @@ RSpec.describe SigepWeb::RequestXmlPlp do
     context "when the request are successful", vcr: {cassette_name: "request_xml_plp/success"} do
       let(:id_plp) { "11234567" }
 
-      pending { expect(request_xml_plp.request[:success]).to be_truthy }
+      xit { expect(request_xml_plp.request[:success]).to be_truthy }
     end
 
     context "when the request are fail", vcr: {cassette_name: "request_xml_plp/fail"} do
