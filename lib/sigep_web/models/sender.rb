@@ -26,10 +26,10 @@ module SigepWeb
       end
 
       def to_xml
-        builder = Nokogiri::XML::Builder.new(encoding: 'ISO-8859-1') do |xml|
+        builder = Nokogiri::XML::Builder.new(encoding: "ISO-8859-1") do |xml|
           xml.correioslog do
-            xml.tipo_arquivo 'Postagem'
-            xml.versao_arquivo '2.3'
+            xml.tipo_arquivo "Postagem"
+            xml.versao_arquivo "2.3"
             plp_xml(xml)
             receiver_xml(xml)
             xml.forma_pagamento @payment_form
@@ -74,4 +74,3 @@ module SigepWeb
     end
   end
 end
-

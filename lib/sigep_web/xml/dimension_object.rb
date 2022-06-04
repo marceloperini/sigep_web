@@ -4,7 +4,7 @@ module SigepWeb
   module XML
     class DimensionObject
       def initialize(builder, dimension_object)
-        @builder          = builder
+        @builder = builder
         @dimension_object = dimension_object
       end
 
@@ -20,4 +20,3 @@ module SigepWeb
     end
   end
 end
-

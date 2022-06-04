@@ -13,7 +13,8 @@ module SigepWeb
     def request
       authenticate = SigepWeb.configuration.authenticate
 
-      response = process(:solicitar_range,
+      response = process(
+        :solicitar_range,
         usuario: authenticate.user,
         senha: authenticate.password,
         codAdministrativo: authenticate.administrative_code,
@@ -23,13 +24,13 @@ module SigepWeb
         quantidade: quantity
       ).to_hash[:solicitar_range_response][:return]
 
-      if response[:cod_erro] == '0'
-        { success: true, response: response }
+      if response[:cod_erro] == "0"
+        {success: true, response: response}
       else
-        { success: false, error: response[:msg_erro] }
+        {success: false, error: response[:msg_erro]}
       end
     rescue Savon::SOAPFault => e
-      { success: false, error: e.message }
+      {success: false, error: e.message}
     end
 
     private
@@ -37,4 +38,3 @@ module SigepWeb
     attr_reader :type, :service, :quantity
   end
 end
-

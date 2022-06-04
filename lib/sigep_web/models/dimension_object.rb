@@ -7,12 +7,11 @@ module SigepWeb
 
       def initialize(object_type:, height:, width:, length:, diameter:)
         @object_type = object_type
-        @height      = height
-        @width       = width
-        @length      = length
-        @diameter    = diameter
+        @height = height
+        @width = width
+        @length = length
+        @diameter = diameter
       end
     end
   end
 end
-

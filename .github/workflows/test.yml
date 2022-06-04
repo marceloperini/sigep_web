@@ -1,5 +1,6 @@
 name: gha-workflow-test
 on: [push, pull_request]
+
 jobs:
   gha-job-lint:
     name: Lint
@@ -16,7 +17,7 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
       - name: Lint
-        run: bundle exec rubocop
+        run: bundle exec standardrb
 
   # The test job is a matrix of ruby/rails versions.
   gha-job-test:

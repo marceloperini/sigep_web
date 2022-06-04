@@ -11,20 +11,21 @@ module SigepWeb
     def request
       authenticate = SigepWeb.configuration.authenticate
 
-      response = process(:calcular_digito_verificador,
+      response = process(
+        :calcular_digito_verificador,
         usuario: authenticate.user,
         senha: authenticate.password,
         codAdministrativo: authenticate.administrative_code,
         numero: number
       ).to_hash[:calcular_digito_verificador_response][:return]
 
-      if response[:cod_erro] == '0'
-        { success: true, response: response }
+      if response[:cod_erro] == "0"
+        {success: true, response: response}
       else
-        { success: false, error: response }
+        {success: false, error: response}
       end
     rescue Savon::SOAPFault => exception
-      { success: false, error: exception.message }
+      {success: false, error: exception.message}
     end
 
     private
