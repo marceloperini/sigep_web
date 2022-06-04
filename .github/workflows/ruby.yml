@@ -1,31 +1,48 @@
-name: Ruby
-
+name: gha-workflow-test
 on: [push, pull_request]
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  gha-job-lint:
+    name: Lint
+    runs-on: ubuntu-18.04
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+      - name: Bundle
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Lint
+        run: bundle exec rubocop
 
-    - uses: actions/checkout@v2
+  # The test job is a matrix of ruby/rails versions.
+  gha-job-test:
+    name: Ruby ${{ matrix.ruby }}, ${{ matrix.gemfile }}.gemfile
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        gemfile: [ 'ruby_3.1' ]
+        ruby: [ '2.6', '2.7', '3.0', '3.1' ]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true # 'bundle install' and cache
+        env:
+          BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
 
-    - name: Set up Ruby 2.6
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.6.x
+      - name: Test
+        run: bundle exec rspec
+        env:
+          BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
 
-    - name: Build and test
-      env:
-        GEM_ENV: test
-        COVERALLS_REPO_TOKEN: <%= ENV['COVERALLS_REPO_TOKEN'] %>
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        bundle exec rspec
-
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
