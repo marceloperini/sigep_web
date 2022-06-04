@@ -12,16 +12,16 @@ RSpec.describe SigepWeb::GenerateLabelsDigitVerifier do
       config.card = "0067599079"
     end
 
-    @dvs = SigepWeb.generate_labels_digit_verifier(
-      labels: ["DL74668653 BR", "DL76023727 BR"]
-    )
+    # @dvs = SigepWeb.generate_labels_digit_verifier(
+    #   labels: ["DL74668653 BR", "DL76023727 BR"]
+    # )
   end
 
   describe "#request" do
     context "when request are successful", vcr: {cassette_name: "generate_labels_digit_verifier/success"} do
       let(:labels) { ["DL74668653 BR", "DL76023727 BR"] }
 
-      it { expect(generate_labels_digit_verifier.request[:success]).to be_truthy }
+      it { expect(generate_labels_digit_verifier.request[:success]).to be(true) }
 
       it "is expected to responds with correct response" do
         expect(generate_labels_digit_verifier.request[:response]).to match_array(
@@ -33,7 +33,7 @@ RSpec.describe SigepWeb::GenerateLabelsDigitVerifier do
     context "when request failed", vcr: {cassette_name: "generate_labels_digit_verifier/fail"} do
       let(:labels) { ["no_label"] }
 
-      it { expect(generate_labels_digit_verifier.request[:response]).to be_falsey }
+      it { expect(generate_labels_digit_verifier.request[:success]).to be(false) }
     end
   end
 end

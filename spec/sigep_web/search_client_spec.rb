@@ -1,7 +1,9 @@
 require "spec_helper"
 
 RSpec.describe SigepWeb::SearchClient do
-  subject(:search_client) { described_class.new(options) }
+  subject(:search_client) {
+    described_class.new(id_contract: id_contract, id_post_card: id_post_card)
+  }
 
   before do
     SigepWeb.configure do |config|
@@ -15,7 +17,8 @@ RSpec.describe SigepWeb::SearchClient do
 
   describe "#request" do
     context "when request are successful", vcr: {cassette_name: "search_client/success"} do
-      let(:options) { {id_contract: "9992157880", id_post_card: "0067599079"} }
+      let(:id_contract) { "9992157880" }
+      let(:id_post_card) { "0067599079" }
 
       it { expect(search_client.request[:success]).to be_truthy }
 
@@ -28,7 +31,8 @@ RSpec.describe SigepWeb::SearchClient do
     end
 
     context "when request failed", vcr: {cassette_name: "search_client/fail"} do
-      let(:options) { {id_contract: "", id_post_card: "0067599079"} }
+      let(:id_contract) { "" }
+      let(:id_post_card) { "0067599079" }
 
       it { expect(search_client.request[:success]).to be_falsey }
     end

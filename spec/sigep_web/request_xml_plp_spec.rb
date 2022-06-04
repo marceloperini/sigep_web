@@ -17,13 +17,13 @@ RSpec.describe SigepWeb::RequestXmlPlp do
     context "when the request are successful", vcr: {cassette_name: "request_xml_plp/success"} do
       let(:id_plp) { "11234567" }
 
-      xit { expect(request_xml_plp.request[:success]).to be_truthy }
+      xit { expect(request_xml_plp.request[:success]).to be(true) }
     end
 
     context "when the request are fail", vcr: {cassette_name: "request_xml_plp/fail"} do
       let(:id_plp) { "000" }
 
-      it { expect(request_xml_plp.request[:success]).to be_falsey }
+      it { expect(request_xml_plp.request[:success]).to be(false) }
     end
   end
 end
