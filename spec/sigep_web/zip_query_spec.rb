@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe SigepWeb::ZipQuery do
-  subject(:zip_query) { described_class.new(options) }
+  subject(:zip_query) { described_class.new(**options) }
 
   describe "#request" do
     context "when request are successful", vcr: {cassette_name: "zip_query/success"} do

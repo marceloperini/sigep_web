@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe SigepWeb::ServiceAvailability do
-  subject(:service_availability) { described_class.new(options) }
+  subject(:service_availability) { described_class.new(**options) }
 
   before do
     SigepWeb.configure do |config|
