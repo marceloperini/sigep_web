@@ -38,7 +38,7 @@ jobs:
       - name: Test
         run: bundle exec rspec
 
-      # - name: Coverage
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
