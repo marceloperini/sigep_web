@@ -6,7 +6,7 @@ module SigepWeb
       attr_accessor :codes, :declareted_value
 
       def initialize(codes:, declareted_value:)
-        @codes            = codes
+        @codes = codes
         @declareted_value = declareted_value
       end
     end

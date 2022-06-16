@@ -32,10 +32,8 @@ module SigepWeb
         @builder.servico_adicional do
           @builder.codigo_servico_adicional "025"
 
-          if postal_object.additional_service_codes
-            postal_object.additional_service_codes.each do |code|
-              @builder.codigo_servico_adicional code
-            end
+          postal_object.additional_service_codes&.each do |code|
+            @builder.codigo_servico_adicional code
           end
 
           @builder.valor_declarado postal_object.additional_services_declared_value
@@ -51,4 +49,3 @@ module SigepWeb
     end
   end
 end
-

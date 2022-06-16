@@ -4,7 +4,7 @@ module SigepWeb
   module XML
     class AdditionalService
       def initialize(builder, additional_service)
-        @builder            = builder
+        @builder = builder
         @additional_service = additional_service
       end
 
@@ -24,4 +24,3 @@ module SigepWeb
     end
   end
 end
-

@@ -13,7 +13,8 @@ module SigepWeb
     def request
       authenticate = SigepWeb.configuration.authenticate
 
-      response = process(:fecha_plp_varios_servicos,
+      response = process(
+        :fecha_plp_varios_servicos,
         xml: plp.to_xml,
         idPlpCliente: id_plp_client,
         cartaoPostagem: authenticate.card,
@@ -22,9 +23,9 @@ module SigepWeb
         senha: authenticate.password
       ).to_hash[:fecha_plp_varios_servicos_response][:return].to_s
 
-      { success: true, response: response }
+      {success: true, response: response}
     rescue Savon::SOAPFault => e
-      { success: false, error: e.message }
+      {success: false, error: e.message}
     end
 
     private
@@ -32,4 +33,3 @@ module SigepWeb
     attr_reader :plp, :id_plp_client, :labels
   end
 end
-

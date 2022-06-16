@@ -10,16 +10,17 @@ module SigepWeb
     end
 
     def process(method, message)
-      @client.call(method, soap_action: '', message: message)
+      @client.call(method, soap_action: "", message: message)
     end
 
     private
-      def url
-        if ENV['GEM_ENV'] == 'test'
-          'http://webservicescolhomologacao.correios.com.br/ScolWeb/WebServiceScol?wsdl'
-        else
-          'http://webservicescol.correios.com.br/ScolWeb/WebServiceScol?wsdl'
-        end
+
+    def url
+      if ENV["GEM_ENV"] == "test"
+        "http://webservicescolhomologacao.correios.com.br/ScolWeb/WebServiceScol?wsdl"
+      else
+        "http://webservicescol.correios.com.br/ScolWeb/WebServiceScol?wsdl"
       end
+    end
   end
 end

@@ -5,9 +5,11 @@ module SigepWeb
 
     def authenticate
       @authenticate ||=
-        Authenticate.new(user: user, password: password,
-                         administrative_code: administrative_code,
-                         contract: contract, card: card)
+        Authenticate.new(
+          user: user, password: password,
+          administrative_code: administrative_code,
+          contract: contract, card: card
+        )
     end
   end
 end
